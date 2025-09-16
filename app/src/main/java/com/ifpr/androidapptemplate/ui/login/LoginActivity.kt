@@ -69,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
                     updateUI(firebaseAuth.currentUser)
                 } else {
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
+                    Toast.makeText(baseContext, "Falha no login",
                         Toast.LENGTH_SHORT).show()
                     updateUI(null)
                 }
