@@ -6,20 +6,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    android:fitsSystemWindows="true"
-    tools:context=".ui.usuario.CadastroUsuarioActivity">
+    tools:context=".ui.usuario.PerfilUsuarioFragment">
 
     <TextView
         android:id="@+id/textCadastroUsuarioTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Cadastro de Usuário"
+        android:text="Perfil de Usuário"
+        android:textColor="#FFEB3B"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/userProfileImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Foto de perfil"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textCadastroUsuarioTitle"
+        app:layout_constraintVertical_bias="0.018" />
 
     <EditText
         android:id="@+id/registerNameEditText"
@@ -28,13 +42,12 @@
         android:layout_marginTop="16dp"
         android:hint="Nome"
         android:textColor="#FFEB3B"
-        android:textColorHighlight="#FFEB3B"
         android:textColorHint="#FFEB3B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textCadastroUsuarioTitle"
+        app:layout_constraintTop_toBottomOf="@id/userProfileImageView"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
@@ -44,14 +57,27 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:textColor="#FFEB3B"
-        android:textColorHighlight="#FFEB3B"
         android:textColorHint="#FFEB3B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registerNameEditText"
-        app:layout_constraintVertical_bias="0.033" />
+        app:layout_constraintVertical_bias="0.028" />
+
+    <EditText
+        android:id="@+id/registerEnderecoEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Endereço"
+        android:textColor="#FFEB3B"
+        android:textColorHint="#FFEB3B"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/registerEmailEditText"
+        app:layout_constraintVertical_bias="0.041" />
 
     <EditText
         android:id="@+id/registerPasswordEditText"
@@ -60,14 +86,13 @@
         android:hint="Senha"
         android:inputType="textPassword"
         android:textColor="#FFEB3B"
-        android:textColorHighlight="#FFEB3B"
         android:textColorHint="#FFEB3B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/registerEmailEditText"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintTop_toBottomOf="@id/registerEnderecoEditText"
+        app:layout_constraintVertical_bias="0.067" />
 
     <EditText
         android:id="@+id/registerConfirmPasswordEditText"
@@ -76,41 +101,41 @@
         android:hint="Confirmar Senha"
         android:inputType="textPassword"
         android:textColor="#FFEB3B"
-        android:textColorHighlight="#FFEB3B"
         android:textColorHint="#FFEB3B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registerPasswordEditText"
-        app:layout_constraintVertical_bias="0.045" />
+        app:layout_constraintVertical_bias="0.081" />
 
     <Button
         android:id="@+id/salvarButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Cadastrar"
+        android:backgroundTint="#3C3C3C"
+        android:text="Atualizar"
         android:textColor="#FFEB3B"
-        android:textColorHighlight="#FFEB3B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registerConfirmPasswordEditText"
-        app:layout_constraintVertical_bias="0.051" />
+        app:layout_constraintVertical_bias="0.066" />
 
     <Button
         android:id="@+id/sairButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="#3C3C3C"
         android:text="Sair"
         android:textColor="#FFEB3B"
-        android:textColorHighlight="#FFEB3B"
-        android:textColorHint="#FFEB3B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/salvarButton"
-        app:layout_constraintVertical_bias="0.031" />
+        app:layout_constraintVertical_bias="0.186" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
