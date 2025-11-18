@@ -25,12 +25,30 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/item_endereco"
+                android:id="@+id/txData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Endereço:"
+                android:text="Data:"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txTarefa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tarefa:" />
+
+            <TextView
+                android:id="@+id/txDescricao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descrição" />
+
+            <TextView
+                android:id="@+id/tarefaCon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tarefa realizada:" />
 
             <!-- Campos futuros aqui -->
         </LinearLayout>

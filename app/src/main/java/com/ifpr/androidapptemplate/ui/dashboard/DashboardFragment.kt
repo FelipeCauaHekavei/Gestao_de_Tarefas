@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -19,9 +20,8 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.StorageReference
 import com.ifpr.androidapptemplate.R
-import com.ifpr.androidapptemplate.baseclasses.Item
+import com.ifpr.androidapptemplate.baseclasses.Tarefas
 import com.ifpr.androidapptemplate.databinding.FragmentDashboardBinding
 
 
@@ -35,6 +35,10 @@ class DashboardFragment : Fragment() {
 
 
     //TODO("Declare aqui as outras variaveis do tipo EditText que foram inseridas no layout")
+    private lateinit var txtTarefa : EditText
+    private lateinit var txtDescricao : EditText
+    private lateinit var txtData : EditText
+    private lateinit var CheckBTarefa_concluida : CheckBox
     private lateinit var salvarButton: Button
     private lateinit var selectImageButton: Button
     private lateinit var databaseReference: DatabaseReference
@@ -65,7 +69,10 @@ class DashboardFragment : Fragment() {
         itemImageView = view.findViewById(R.id.image_item)
         salvarButton = view.findViewById(R.id.salvarItemButton)
         selectImageButton = view.findViewById(R.id.button_select_image)
-        enderecoEditText = view.findViewById(R.id.enderecoItemEditText)
+        txtTarefa = view.findViewById(R.id.txtTarefa)
+        txtData = view.findViewById(R.id.txtData)
+        txtDescricao = view.findViewById(R.id.txtDescricao)
+        CheckBTarefa_concluida = view.findViewById(R.id.CheckBTarefa_concluida)
         //TODO("Capture aqui os outro campos que foram inseridos no layout. Por exemplo, ate
         // o momento so foi capturado o endereco (EditText)")
 
@@ -96,9 +103,12 @@ class DashboardFragment : Fragment() {
 
     private fun salvarItem() {
         //TODO("Capture aqui o conteudo que esta nos outros editTexts que foram criados")
-        val endereco = enderecoEditText.text.toString().trim()
+        val data = txtData.text.toString().trim()
+        val tarefa = txtTarefa.text.toString().trim()
+        val descricao = txtDescricao.text.toString().trim()
+        val tarefa_concluida = CheckBTarefa_concluida.isChecked
 
-        if (endereco.isEmpty() || imageUri == null) {
+        if (data.isEmpty()||tarefa.isEmpty()||descricao.isEmpty()|| imageUri == null) {
             Toast.makeText(context, "Por favor, preencha todos os campos", Toast.LENGTH_SHORT)
                 .show()
             return
@@ -115,12 +125,15 @@ class DashboardFragment : Fragment() {
 
             if (bytes != null) {
                 val base64Image = Base64.encodeToString(bytes, Base64.DEFAULT)
-                val endereco = enderecoEditText.text.toString().trim()
+                val data = txtData.text.toString().trim()
+                val tarefa = txtTarefa.text.toString().trim()
+                val descricao = txtDescricao.text.toString().trim()
+                val tarefa_concluida = CheckBTarefa_concluida.isChecked
                 //TODO("Capture aqui o conteudo que esta nos outros editTexts que foram criados")
 
-                val item = Item(endereco, base64Image)
+                val tarefas = Tarefas(tarefa_concluida,descricao,tarefa,data, base64Image)
 
-                saveItemIntoDatabase(item)
+                saveItemIntoDatabase(tarefas)
             }
         }
     }
@@ -137,15 +150,15 @@ class DashboardFragment : Fragment() {
         }
     }
 
-    private fun saveItemIntoDatabase(item: Item) {
+    private fun saveItemIntoDatabase(tarefas: Tarefas) {
         //TODO("Altere a raiz que sera criada no seu banco de dados do realtime database.
         // Renomeie a raiz itens")
-        databaseReference = FirebaseDatabase.getInstance().getReference("itens")
+        databaseReference = FirebaseDatabase.getInstance().getReference("tarefas")
 
         // Cria uma chave unica para o novo item
         val itemId = databaseReference.push().key
         if (itemId != null) {
-            databaseReference.child(auth.uid.toString()).child(itemId).setValue(item)
+            databaseReference.child(auth.uid.toString()).child(itemId).setValue(tarefas)
                 .addOnSuccessListener {
                     Toast.makeText(context, "Item cadastrado com sucesso!", Toast.LENGTH_SHORT)
                         .show()

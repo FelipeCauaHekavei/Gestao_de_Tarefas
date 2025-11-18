@@ -1,28 +1,24 @@
 package com.ifpr.androidapptemplate.ui.home
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.ScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import android.util.Base64
 import android.widget.*
 import android.graphics.BitmapFactory
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.SwitchCompat
 import com.bumptech.glide.Glide
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.ifpr.androidapptemplate.baseclasses.Item
+import com.ifpr.androidapptemplate.baseclasses.Tarefas
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ifpr.androidapptemplate.ui.ai.AiLogicActivity
-import com.ifpr.androidapptemplate.ui.ai.AiLogicFragment
 import com.ifpr.androidapptemplate.R
 import com.ifpr.androidapptemplate.databinding.FragmentHomeBinding
 
@@ -61,29 +57,36 @@ class HomeFragment : Fragment() {
     }
 
     fun carregarItensMarketplace(container: LinearLayout) {
-        val databaseRef = FirebaseDatabase.getInstance().getReference("itens")
+            val databaseRef = FirebaseDatabase.getInstance().getReference("tarefas")
 
         databaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            @SuppressLint("MissingInflatedId", "SetTextI18n")
             override fun onDataChange(snapshot: DataSnapshot) {
                 container.removeAllViews()
 
                 for (userSnapshot in snapshot.children) {
                     for (itemSnapshot in userSnapshot.children) {
-                        val item = itemSnapshot.getValue(Item::class.java) ?: continue
+                        val tarefas = itemSnapshot.getValue(Tarefas::class.java) ?: continue
 
                         val itemView = LayoutInflater.from(container.context)
                             .inflate(R.layout.item_template, container, false)
 
                         val imageView = itemView.findViewById<ImageView>(R.id.item_image)
-                        val enderecoView = itemView.findViewById<TextView>(R.id.item_endereco)
+                        val txData = itemView.findViewById<TextView>(R.id.txData)
+                        val txDescricao = itemView.findViewById<TextView>(R.id.txDescricao)
+                        val txTarefa = itemView.findViewById<TextView>(R.id.txTarefa)
+                        val tarefaCon = itemView.findViewById<TextView>(R.id.tarefaCon)
 
-                        enderecoView.text = "Endereço: ${item.endereco ?: "Não informado"}"
+                        txData.text = "Data: ${tarefas.data ?: "Não informado"}"
+                        txTarefa.text = "Tarefa: ${tarefas.tarefa ?: "Não informado"}"
+                        txDescricao.text = "Descrição: ${tarefas.descricao ?: "Não informado"}"
+                        tarefaCon.text = "Tarefa Realizada: ${tarefas.tarrefa_realizada}"
 
-                        if (!item.imageUrl.isNullOrEmpty()) {
-                            Glide.with(container.context).load(item.imageUrl).into(imageView)
-                        } else if (!item.base64Image.isNullOrEmpty()) {
+                        if (!tarefas.imageUrl.isNullOrEmpty()) {
+                            Glide.with(container.context).load(tarefas.imageUrl).into(imageView)
+                        } else if (!tarefas.base64Image.isNullOrEmpty()) {
                             try {
-                                val bytes = Base64.decode(item.base64Image, Base64.DEFAULT)
+                                val bytes = Base64.decode(tarefas.base64Image, Base64.DEFAULT)
                                 val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
                                 imageView.setImageBitmap(bitmap)
                             } catch (_: Exception) {}
