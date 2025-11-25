@@ -29,6 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Data:"
+                android:textColor="#FFEB3B"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -36,19 +37,22 @@
                 android:id="@+id/txTarefa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tarefa:" />
+                android:text="Tarefa:"
+                android:textColor="#FFEB3B" />
 
             <TextView
                 android:id="@+id/txDescricao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Descrição" />
+                android:text="Descrição"
+                android:textColor="#FFEB3B" />
 
             <TextView
                 android:id="@+id/tarefaCon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tarefa realizada:" />
+                android:text="Tarefa realizada:"
+                android:textColor="#FFEB3B" />
 
             <!-- Campos futuros aqui -->
         </LinearLayout>

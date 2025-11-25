@@ -80,7 +80,15 @@ class HomeFragment : Fragment() {
                         txData.text = "Data: ${tarefas.data ?: "Não informado"}"
                         txTarefa.text = "Tarefa: ${tarefas.tarefa ?: "Não informado"}"
                         txDescricao.text = "Descrição: ${tarefas.descricao ?: "Não informado"}"
-                        tarefaCon.text = "Tarefa Realizada: ${tarefas.tarrefa_realizada}"
+                        if (tarefas.tarrefa_realizada == false){
+                            tarefaCon.text = "Tarefa Realizada: tarefa não foi realizada"
+                        }
+                        else {
+                            tarefaCon.text = "Tarefa Realizada: tarefa foi realizada"
+                        }
+
+
+
 
                         if (!tarefas.imageUrl.isNullOrEmpty()) {
                             Glide.with(container.context).load(tarefas.imageUrl).into(imageView)

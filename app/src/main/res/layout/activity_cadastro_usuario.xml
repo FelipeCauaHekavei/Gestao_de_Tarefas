@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
+    android:background="#242424"
     android:fitsSystemWindows="true"
+    android:padding="10dp"
     tools:context=".ui.usuario.CadastroUsuarioActivity">
 
     <TextView
@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Cadastro de Usuário"
+        android:textColor="#FFEB3B"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,10 +65,10 @@
         android:textColorHint="#FFEB3B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registerEmailEditText"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0.018" />
 
     <EditText
         android:id="@+id/registerConfirmPasswordEditText"
@@ -89,8 +90,9 @@
         android:id="@+id/salvarButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FFEB3B"
         android:text="Cadastrar"
-        android:textColor="#FFEB3B"
+        android:textColor="#FFFFFF"
         android:textColorHighlight="#FFEB3B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,8 +105,9 @@
         android:id="@+id/sairButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FFEB3B"
         android:text="Sair"
-        android:textColor="#FFEB3B"
+        android:textColor="#FFFFFF"
         android:textColorHighlight="#FFEB3B"
         android:textColorHint="#FFEB3B"
         app:layout_constraintBottom_toBottomOf="parent"
